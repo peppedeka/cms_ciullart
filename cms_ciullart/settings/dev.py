@@ -7,10 +7,20 @@ DEBUG = True
 SECRET_KEY = 'mw^ib-(h7r#qx8l13%#p-=(0%j862cmo6&i6@t0()6h%!016l4'
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ciullart',
+        'USER': 'ciullart',
+        'PASSWORD': 'ciullart',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 
 try:
     from .local import *
