@@ -10,31 +10,24 @@
 {% block content %}
 
 <div id="wrapper" class="clearfix">
-        <section id="slider" class="slider-element slider-parallax swiper_wrapper full-screen clearfix">
-
-                <div class="slider-parallax-inner">
-
-                    <div class="swiper-container swiper-parent">
-                        <div class="swiper-wrapper">
-                                {% image page.image max-1000x400 as photo %}
-                            <div class="swiper-slide " style="background-image: url('{{ photo.url}}')">
-                                <div class="container clearfix">
-                                    <div class="slider-caption slider-caption-right">
-                                        <h2 data-caption-animate="fadeInUp">Ciullart</h2>
-                                        <p class="d-none d-sm-block" data-caption-animate="fadeInUp" data-caption-delay="200"><h3>
-                                            Lorenzo Maria Ciulla
+        <section id="slider" class="slider-element slider-parallax swiper_wrapper clearfix">
+            <div class="slider-parallax-inner">
+                <div class="swiper-container swiper-parent">
+                    <div class="swiper-wrapper">
+                            {% image page.image max-1000x400 as photo %}
+                        <div class="swiper-slide dark" style="background-image: url('{{ photo.url}}');">
+                            <div class="container clearfix">
+                                <div class="slider-caption slider-caption-center">
+                                    <h2 data-caption-animate="fadeInUp">Ciullart</h2>
+                                    <p class="d-none d-sm-block" data-caption-animate="fadeInUp" data-caption-delay="200">  Lorenzo Maria Ciulla
                                             <br> Arte &amp; colori in movimento. <br> Un viaggio nell' immaginario siciliano tra pennelli e pixel</p>
-                                        </h3>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-            </section>
-
+            </div>
+        </section>
 
     <!-- #content ============================================= -->
     <section id="content">
