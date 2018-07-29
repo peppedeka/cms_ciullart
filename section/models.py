@@ -19,6 +19,8 @@ from wagtail.api import APIField
 @register_snippet
 class SectionCategory(models.Model):
     name = models.CharField(max_length=255)
+    description = RichTextField(
+        verbose_name='Descrizione della sezione', blank=True)
     icon = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
