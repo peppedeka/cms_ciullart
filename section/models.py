@@ -27,8 +27,8 @@ class SectionCategory(models.Model):
     )
 
     panels = [
-        FieldPanel('description'),
         FieldPanel('name'),
+        FieldPanel('description'),
         ImageChooserPanel('icon'),
     ]
 
