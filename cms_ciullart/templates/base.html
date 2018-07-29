@@ -1,40 +1,82 @@
-{% load static wagtailuserbar %}
+{% load static wagtailuserbar wagtailcore_tags %}
 
 <!DOCTYPE html>
 <html class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <title>
-            {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %}- {{ site_name }}{% endif %}
-                {% endwith %}
-            {% endblock %}
-        </title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/cms_ciullart.css' %}">
+<head>
+    <meta charset="utf-8" />
+    <title>
+        {% block title %} {% if self.seo_title %} {{ self.seo_title }} {% else %} {{ self.title }} {% endif %} {% endblock %}
+        {% block title_suffix %} {% with self.get_site.site_name as site_name %} {% if site_name %}- {{ site_name }}
+        {% endif %} {% endwith %} {% endblock %}
+    </title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {# Global stylesheets #}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
 
-        {% block extra_css %}
-            {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
-    </head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dark.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cms_ciullart.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    {% block extra_css %} {# Override this in templates to add extra stylesheets #} {% endblock %}
+</head>
 
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
+<body class="{% block body_class %}{% endblock %} stretched">
 
-        {% block content %}{% endblock %}
+    <header id="header" class="full-header" data-sticky-class="not-dark" >
+            <div id="header-wrap">
+                    <div class="menu-c  clearfix">
+                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                        <!-- Logo
+                            ============================================= -->
+                            <div id="logo">
+                                <a>Ciullart.com</a>
+                        </div><!-- #logo end -->
+                        <!-- Primary Navigation
+                            ============================================= -->
+                        <nav id="primary-menu" class="dark">
+                            <ul>
+                                <li><a href="{% slugurl 'home' %}"><div>Home</div></a></li>
+                                <li class="current"><a href="{% slugurl 'progetti' %}"><div>Sezioni</div></a></li>
+                                <li class="mega-menu"><a href="/faq">Contatti</a></li>
+                                <li class="mega-menu"><a href="/avviso-finanziamento"><div>Curiosita</div></a></li>
+                                {% if user.is_authenticated %}
+                                    <li><a href="/admin/logout/">Logout {{ user }}</a></li>
+                                {% else %}
+                                    <li><a href="/admin">Login</a></li>
+                                {% endif %}
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/cms_ciullart.js' %}"></script>
+                            </ul>
+                        </nav><!-- #primary-menu end -->
+                    </div>
+                </div>
 
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
-    </body>
+    </header>
+
+    {% wagtailuserbar %} {% block content %}{% endblock %} {# Global javascript #}
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/events-data.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/instafeed.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.calendario.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.camera.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.elastic.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.mousewheel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.nivo.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.vmap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/functions.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/canvas.slider.fade.js' %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    {% block extra_js %} {# Override this in templates to add extra javascript #} {% endblock %}
+</body>
+
 </html>

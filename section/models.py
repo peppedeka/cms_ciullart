@@ -11,6 +11,7 @@ from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.api.fields import ImageRenditionField
 from wagtail.snippets.models import register_snippet
 from wagtail.search import index
 from wagtail.api import APIField
@@ -52,6 +53,7 @@ class SectionIndexPage(Page):
 
     api_fields = [
         APIField('image'),
+        APIField('feed_image', serializer=ImageRenditionField('fill-500x500', source='image')),
     ]
 
 class SectionTagIndexPage(Page):
