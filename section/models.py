@@ -19,8 +19,6 @@ from wagtail.api import APIField
 @register_snippet
 class SectionCategory(models.Model):
     name = models.CharField(max_length=255)
-    section_description = RichTextField(
-        verbose_name='Descrizione della sezione', blank=True)
     icon = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
@@ -28,7 +26,6 @@ class SectionCategory(models.Model):
 
     panels = [
         FieldPanel('name'),
-        FieldPanel('section_description'),
         ImageChooserPanel('icon'),
     ]
 
@@ -39,6 +36,7 @@ class SectionCategory(models.Model):
         verbose_name_plural = 'Section categories'
 
 class SectionIndexPage(Page):
+
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
@@ -46,12 +44,16 @@ class SectionIndexPage(Page):
         context['sectionpages'] = sectionpages
         return context
 
+    description = RichTextField(
+        verbose_name='Descrizione della sezione', blank=True)
+
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.SET_NULL, related_name='+', blank=True,null=True
     )
 
     content_panels = Page.content_panels + [
-           ImageChooserPanel('image'),
+        FieldPanel('description'),
+        ImageChooserPanel('image'),
     ]
 
     api_fields = [
