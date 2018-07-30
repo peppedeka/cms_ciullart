@@ -51,19 +51,19 @@
 
                         <article class="portfolio-item pf-media pf-icons">
                             <div class="portfolio-image">
-                                <a href="portfolio-single.html">
+                                <a href="{% pageurl section %}">
                                     {% image section.image max-1000x400 as tmp_photo %}
                                     <img src="{{ tmp_photo.url }}" alt="Open Imagination">
                                 </a>
                                 <div class="portfolio-overlay">
                             <div class="portfolio-desc">
-                                <h3><a href="portfolio-single.html">{{section.title}}</a></h3>
+                                <h3><a href="{% pageurl section %}">{{section.title}}</a></h3>
                             </div>
                         </div>
                     </div>
                     <div class="portfolio-desc">
                         <h3>
-                            <a href="portfolio-single.html">{{section.title}}</a>
+                            <a href="{% pageurl section %}">{{section.title}}</a>
                         </h3>
                         <span>
                         </span>
