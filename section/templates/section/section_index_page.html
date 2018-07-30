@@ -9,8 +9,7 @@
             {% with post.main_image as main_image %} {% if main_image %} {% image main_image fill-160x100 as photo %}
             <img class="card-img-top" src="{{ photo.url }}" alt="Card image cap"> {% endif %} {% endwith %}
             <div class="card-body">
-                <h1>{{ page.intro }}</h1>
-                <p class="card-text">{{ post.description|striptags|slice:':400'|richtext  }}</p>
+                <p class="card-text"><h1>{{ page.intro }}</h1>{{ post.description|striptags|slice:':400'|richtext  }}</p>
                 <a href="{% pageurl post %}" class="btn btn-primary">Dettagli</a>
             </div>
         </div>
