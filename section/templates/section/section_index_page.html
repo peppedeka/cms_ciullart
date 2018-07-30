@@ -10,7 +10,7 @@
             <img class="card-img-top" src="{{ photo.url }}" alt="Card image cap"> {% endif %} {% endwith %}
             <div class="card-body">
                 <h1>{{ page.intro }}</h1>
-                <p class="card-text">{{ post.description|striptags|slice:':200'|richtext  }}</p>
+                <p class="card-text">{{ post.description|striptags|slice:':400'|richtext  }}</p>
                 <a href="{% pageurl post %}" class="btn btn-primary">Dettagli</a>
             </div>
         </div>
