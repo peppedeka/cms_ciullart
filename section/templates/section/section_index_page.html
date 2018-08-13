@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
-{% block body_class %}template-sectionindexpage{%endblock %}
+{% block body_class %}template-sectionindexpage {%endblock%}
 {% block content %}
 <div id="wrapper" class="clearfix">
     <section id="content">
@@ -9,18 +9,21 @@
                 <h1>{{ page.title }}</h1>
                 <div class="row">
                     <div class="col-lg-8 bottommargin">
-                        {% for post in page.get_children %} {% with post=post.specific %}
-                        <div class="fancy-title title-border">
-                            <h3>{{post.title}}</h3>
-                        </div>
-                        <div class="col_full masonry-thumbs grid-6 bottommargin-lg clearfix" data-big="5" data-lightbox="gallery">
-                            {% with post.main_image as main_image %} {% if main_image %} {% image main_image original as photo %}
-                            <a href="{{ photo.url }}" data-lightbox="gallery-item">
-                                {% image main_image fill-80x80 as thumb %}
-                                <img class="image_fade" src="{{ thumb.url }}" alt="Gallery Thumb 1">
-                            </a>
-                            {% endif %} {% endwith %} {% endwith %}
-                        </div>
+                        {% for post in page.get_children %}
+                        {% with post=post.specific %}
+                            <div class="fancy-title title-border">
+                                <h3>{{post.title}}</h3>
+                            </div>
+                            <div class="col_full masonry-thumbs grid-6 bottommargin-lg clearfix" data-big="5" data-lightbox="gallery">
+                                {% for item in post.gallery_images.all %}
+                                {% image item.image original as photo %}
+                                <a href="{{ photo.url }}" data-lightbox="gallery-item">
+                                    {% image item.image fill-80x80 as thumb %}
+                                    <img class="image_fade" src="{{ thumb.url }}" alt="Gallery Thumb 1">
+                                </a>
+                                {% endfor %}
+                            </div>
+                        {% endwith %}
                         {% endfor %}
                     </div>
                 </div>
