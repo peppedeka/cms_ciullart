@@ -7,6 +7,10 @@
         <div class="content-wrap">
             <div class="container clearfix">
                 <h1>{{ page.title }}</h1>
+                <blockquote class="quote">
+                    {{ page.description |richtext}}
+                    <footer class="blockquote-footer">Lorenzo Maria Ciulla</footer>
+                </blockquote>
                 <div class="row">
                     <div class="col-lg-8 bottommargin">
                         {% for post in page.get_children %}
