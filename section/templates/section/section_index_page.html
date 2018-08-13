@@ -12,12 +12,14 @@
                     <footer class="blockquote-footer">Lorenzo Maria Ciulla</footer>
                 </blockquote>
                 <div class="row">
-                    <div class="col-lg-8 bottommargin">
                         {% for post in page.get_children %}
                         {% with post=post.specific %}
+                        <div class="col-12">
                             <div class="fancy-title title-border">
                                 <h3>{{post.title}}</h3>
                             </div>
+                        </div>
+                        <div class="col-8">
                             <div class="col_full masonry-thumbs grid-6 bottommargin-lg clearfix" data-big="5" data-lightbox="gallery">
                                 {% for item in post.gallery_images.all %}
                                 {% image item.image original as photo %}
@@ -27,10 +29,35 @@
                                 </a>
                                 {% endfor %}
                             </div>
+                        </div>
+                        <div class="col-4">
+                            {{ post.description|richtext }}
+                            {% with categories=page.categories.all %}
+                                {% if categories %}
+                                    <h3>Posted in:</h3>
+                                    <ul>
+                                        {% for category in categories %}
+                                            <li style="display: inline">
+                                                {% image category.icon fill-32x32 style="vertical-align: middle" %}
+                                                {{ category.name }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endwith %}
+                            {% if page.tags.all.count %}
+                                <div class="tags">
+                                    <h3>Tags</h3>
+                                    {% for tag in page.tags.all %}
+                                        <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <p class="meta">{{ post.date }}</p>
+                        </div>
                         {% endwith %}
                         {% endfor %}
                     </div>
-                </div>
             </div>
         </div>
     </section>
