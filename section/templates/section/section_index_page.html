@@ -24,7 +24,7 @@
                                 {% for item in post.gallery_images.all %}
                                 {% image item.image original as photo %}
                                 <a href="{{ photo.url }}" data-lightbox="gallery-item">
-                                    {% image item.image fill-80x80 as thumb %}
+                                    {% image item.image fill-200x200 as thumb %}
                                     <img class="image_fade" src="{{ thumb.url }}" alt="Gallery Thumb 1">
                                 </a>
                                 {% endfor %}
