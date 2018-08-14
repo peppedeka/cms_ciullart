@@ -113,3 +113,4 @@ npm-debug.log*
 *.iws
 coverage/
 client/node_modules
+media/
