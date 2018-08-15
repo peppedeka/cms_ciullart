@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% load wagtailcore_tags wagtailimages_tags %} {% block content %}
+<div id="wrapper" class="clearfix">
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+                <div id="portfolio" class="portfolio grid-container portfolio-1 clearfix">
+                    <article class="portfolio-item pf-media pf-icons clearfix">
+                        <div class="portfolio-image">
+                            {% image image.image original as photo %}
+                            <img src="{{ photo.url }}" alt="Open Imagination">
+                        </div>
+                        <div class="portfolio-desc">
+                            <h3>
+                                <a> {{ image.image.title }}</a>
+                            </h3>
+                            <span>
+                                <a>{{ image.caption }}</a>
+                            </span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, quaerat beatae nulla debitis
+                                vitae temporibus enim sed. Optio, reprehenderit, ex.</p>
+                            <ul class="iconlist">
+                                <li>
+                                    <i class="icon-ok"></i>
+                                    <strong>taglia:</strong> S, L, XL</li>
+                                <li>
+                                    <i class="icon-ok"></i>
+                                    <strong>Sesso:</strong> Uomo, donna</li>
+                                <li>
+                                    <i class="icon-ok"></i>
+                                    <strong>collezione:</strong> estate</li>
+                            </ul>
+                            <a href="#" class="button button-3d noleftmargin">PRENOTA</a>
+                        </div>
+                    </article>
+                </div>
+                <!-- #portfolio end -->
+            </div>
+    </section>
+    <!-- #content end -->
+    </div>
+    {% endblock %}

@@ -109,6 +109,13 @@ class SectionPage(Page):
     ]
 
 class SectionPageGalleryImage(Orderable):
+
+    @property
+    def gallery_image(self):
+        gallery_item = self.gallery_images.all()
+
+        return gallery_item
+
     page = ParentalKey(SectionPage, on_delete=models.CASCADE, related_name='gallery_images')
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'

@@ -1,7 +1,65 @@
-{% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
-{% block body_class %}template-sectionindexpage {%endblock%}
-{% block content %}
+{% extends "base.html" %} {% load wagtailcore_tags wagtailimages_tags %} {% block body_class %}template-sectionindexpage
+{%endblock%} {% block extra_js %}
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src =
+            'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.1&appId=406513689514538&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script type="text/javascript">
+    $('.with-caption').magnificPopup({
+        type: 'image',
+        closeBtnInside: false,
+        mainClass: 'mfp-with-zoom mfp-img-mobile',
+
+        image: {
+            verticalFit: true,
+            titleSrc: function (item) {
+                var caption = item.el.attr('title');
+                var elem = document.createElement("div");
+                elem.innerHTML = caption;
+                var dataHref = elem.children[elem.children.length - 1].href;
+                var shareFb = '<div class="fb-share-button" data-href="' + dataHref + '" data-layout="button_count" data-size="small" data-mobile-iframe="true">'
+                              + '<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' + dataHref + ';src=sdkpreparse" class="fb-xfbml-parse-ignore">Condividi</a></div>'
+
+
+                return caption + shareFb;
+            }
+        },
+
+
+        gallery: {
+            enabled: true
+        },
+
+
+
+        callbacks: {
+            open: function () {
+                this.wrap.on('click.pinhandler', '.pin-it', function (e) {
+
+                    // This part of code doesn't work on CodePen, as it blocks window.open
+                    // Uncomment it on your production site, it opens a window via JavaScript, instead of new page
+                    /*window.open(e.currentTarget.href, "intent", "scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=550,height=420,left=" + (window.screen ? Math.round(screen.width / 2 - 275) : 50) + ",top=" + 100);
+
+
+                    return false;*/
+                });
+            },
+            beforeClose: function () {
+                //this.wrap.off('click.pinhandler');
+            }
+        }
+
+    });
+</script>
+{% endblock %} {% block content %}
+<div id="fb-root"></div>
 <div id="wrapper" class="clearfix">
     <section id="content">
         <div class="content-wrap">
@@ -12,52 +70,46 @@
                     <footer class="blockquote-footer">Lorenzo Maria Ciulla</footer>
                 </blockquote>
                 <div class="row">
-                        {% for post in page.get_children %}
-                        {% with post=post.specific %}
-                        <div class="col-12">
-                            <div class="fancy-title title-border">
-                                <h3>{{post.title}}</h3>
-                            </div>
+                    {% for post in page.get_children %} {% with post=post.specific %}
+                    <div class="col-12">
+                        <div class="fancy-title title-border">
+                            <h3>{{post.title}}</h3>
                         </div>
-                        <div class="col-8">
-                            <div class="col_full masonry-thumbs grid-6 bottommargin-lg clearfix" data-big="5" data-lightbox="gallery">
-                                {% for item in post.gallery_images.all %}
-                                {% image item.image original as photo %}
-                                <a href="{{ photo.url }}" data-lightbox="gallery-item" title="<a href='{% pageurl post %}'>{{ item.caption }}</a>">
-                                    {% image item.image fill-200x200 as thumb %}
-                                    <img class="image_fade" src="{{ thumb.url }}">
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            {{ post.description|richtext }}
-                            {% with categories=page.categories.all %}
-                                {% if categories %}
-                                    <h3>Posted in:</h3>
-                                    <ul>
-                                        {% for category in categories %}
-                                            <li style="display: inline">
-                                                {% image category.icon fill-32x32 style="vertical-align: middle" %}
-                                                {{ category.name }}
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
-                            {% endwith %}
-                            {% if page.tags.all.count %}
-                                <div class="tags">
-                                    <h3>Tags</h3>
-                                    {% for tag in page.tags.all %}
-                                        <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                            <p class="meta">{{ post.date }}</p>
-                        </div>
-                        {% endwith %}
-                        {% endfor %}
                     </div>
+                    <div class="col-8">
+                        <div class="col_full masonry-thumbs grid-6 bottommargin-lg clearfix" data-big="5" data-lightbox="gallery">
+                            {% for item in post.gallery_images.all %} {% image item.image original as photo %}
+                            <a class="with-caption" href="{{ photo.url }}" data-lightbox="gallery-item" title="<a>{{ item.caption }}</a><br><a href='../detail/{{item.image.filename}}'> dettagli </a>">
+                                {% image item.image fill-200x200 as thumb %}
+                                <img class="image_fade" src="{{ thumb.url }}">
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        {{ post.description|richtext }} {% with categories=page.categories.all %} {% if categories %}
+                        <h3>Posted in:</h3>
+                        <ul>
+                            {% for category in categories %}
+                            <li style="display: inline">
+                                {% image category.icon fill-32x32 style="vertical-align: middle" %} {{ category.name }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %} {% endwith %} {% if page.tags.all.count %}
+                        <div class="tags">
+                            <h3>Tags</h3>
+                            {% for tag in page.tags.all %}
+                            <a href="{% slugurl 'tags' %}?tag={{ tag }}">
+                                <button type="button">{{ tag }}</button>
+                            </a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <p class="meta">{{ post.date }}</p>
+                    </div>
+                    {% endwith %} {% endfor %}
+                </div>
             </div>
         </div>
     </section>

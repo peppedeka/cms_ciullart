@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include, url
+from django.urls import path
 from django.contrib import admin
 
 
@@ -8,6 +9,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
+from section.views import details
 from .api import api_router
 
 urlpatterns = [
@@ -18,6 +20,7 @@ urlpatterns = [
     url(r'^api/v2/', api_router.urls),
 
     url(r'^search/$', search_views.search, name='search'),
+    path('detail/<image_name>/', details, name='detail'),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
