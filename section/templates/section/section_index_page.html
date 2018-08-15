@@ -1,17 +1,13 @@
 {% extends "base.html" %} {% load wagtailcore_tags wagtailimages_tags %} {% block body_class %}template-sectionindexpage
 {%endblock%} {% block extra_js %}
-<script>
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src =
-            'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.1&appId=406513689514538&autoLogAppEvents=1';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
 <script type="text/javascript">
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.1&appId=406513689514538&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'))
     $('.with-caption').magnificPopup({
         type: 'image',
         closeBtnInside: false,
@@ -24,42 +20,33 @@
                 var elem = document.createElement("div");
                 elem.innerHTML = caption;
                 var dataHref = elem.children[elem.children.length - 1].href;
+
+                var shareLikeFb = '<div class="fb-like" data-href="http://127.0.0.1:8000/detail/Ppu_Portfoglio_di_Ciulla_069.jpeg/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>';
                 var shareFb = '<div class="fb-share-button" data-href="' + dataHref + '" data-layout="button_count" data-size="small" data-mobile-iframe="true">'
-                              + '<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' + dataHref + '" class="fb-xfbml-parse-ignore">Condividi</a></div>'
+                              + '<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' + dataHref + '" class="fb-xfbml-parse-ignore">Condividi</a></div>';
 
 
-                return caption + shareFb;
+                return shareLikeFb + caption ;
             }
         },
 
 
         gallery: {
             enabled: true
-        },
-
-
-
-        callbacks: {
-            open: function () {
-                this.wrap.on('click.pinhandler', '.pin-it', function (e) {
-
-                    // This part of code doesn't work on CodePen, as it blocks window.open
-                    // Uncomment it on your production site, it opens a window via JavaScript, instead of new page
-                    /*window.open(e.currentTarget.href, "intent", "scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=550,height=420,left=" + (window.screen ? Math.round(screen.width / 2 - 275) : 50) + ",top=" + 100);
-
-
-                    return false;*/
-                });
-            },
-            beforeClose: function () {
-                //this.wrap.off('click.pinhandler');
-            }
         }
 
     });
 </script>
 {% endblock %} {% block content %}
 <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.1&appId=406513689514538&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div id="wrapper" class="clearfix">
     <section id="content">
         <div class="content-wrap">
