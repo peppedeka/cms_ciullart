@@ -10,29 +10,6 @@ js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.1&appId=4
 fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
-<script type="text/javascript">
-var fbButton = document.getElementsByClassName("fb-like")[0];
-fbButton.dataset.href = window.location.href;
-meta=document.createElement('meta');
-meta.property='og:title';
-meta.content='When Great Minds Don’t Think Alike';
-
-document.getElementsByTagName('head')[0].appendChild(meta);
-
-meta=document.createElement('meta');
-meta.property='og:url';
-meta.content=window.location.href;
-
-document.getElementsByTagName('head')[0].appendChild(meta);
-
-meta=document.createElement('meta');
-meta.property='og:type';
-meta.content='article';
-
-document.getElementsByTagName('head')[0].appendChild(meta);
-
-console.log('puppa');
-</script>
 {% endblock%}
 {% block content %}
 <div id="fb-root"></div>
