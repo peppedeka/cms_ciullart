@@ -10,6 +10,10 @@ js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.1&appId=4
 fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
+<script type="text/javascript">
+var fbButton = document.getElementsByClassName("fb-like")[0];
+fbButton.dataset.href = window.location.href;
+</script>
 {% endblock%}
 {% block content %}
 <div id="fb-root"></div>
