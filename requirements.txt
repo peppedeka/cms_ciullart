@@ -16,6 +16,7 @@ django-compressor==2.2
 django-cors-headers==2.4.0
 django-el-pagination==3.2.4
 django-libsass==0.7
+django-meta==1.4.1
 django-modelcluster==4.1
 django-phonenumber-field==2.0.0
 django-pipeline==1.6.14
@@ -55,12 +56,15 @@ pytz==2018.3
 ratelim==0.1.6
 rcssmin==1.0.6
 requests==2.18.4
+rjsmin==1.0.12
 six==1.11.0
 typed-ast==1.1.0
 Unidecode==0.4.21
 urllib3==1.22
 wagtail==2.1.1
 wagtail-app-pages==0.2.3
+wagtail-metadata==2.0.0
+wagtail-metadata-mixin==0.0.4
 wagtail-nesting-box==0.2.1
 wagtailgeowidget==4.0.3
 wagtailgmaps==1.0.1
