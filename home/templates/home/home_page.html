@@ -47,23 +47,23 @@
                 <!-- Portfolio Items
 					============================================= -->
                     <div id="portfolio" class="portfolio grid-container portfolio-3 clearfix">
-                        {% for section in sections %}
+                        {% for section in page.related_link %}
 
                         <article class="portfolio-item pf-media pf-icons">
                             <div class="portfolio-image">
-                                <a href="{% pageurl section %}">
-                                    {% image section.image max-1000x400 as tmp_photo %}
+                                <a href="{% pageurl section.value %}">
+                                    {% image section.value.image max-1000x400 as tmp_photo %}
                                     <img src="{{ tmp_photo.url }}" alt="Open Imagination">
                                 </a>
                                 <div class="portfolio-overlay">
                             <div class="portfolio-desc">
-                                <h3><a href="{% pageurl section %}">{{section.title}}</a></h3>
+                                <h3><a href="{% pageurl section.value %}">{{section.value.title}}</a></h3>
                             </div>
                         </div>
                     </div>
                     <div class="portfolio-desc">
                         <h3>
-                            <a href="{% pageurl section %}">{{section.title}}</a>
+                            <a href="{% pageurl section.value %}">{{section.value.title}}</a>
                         </h3>
                         <span>
                         </span>
