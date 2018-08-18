@@ -18,6 +18,12 @@
     display: block;
 }
 
+.sticky-header {
+    #logo img {
+        height: 40px !important;
+    }
+}
+
 @media only screen and (max-width:991px)  {
     #primary-menu {
         margin-right: 5%
