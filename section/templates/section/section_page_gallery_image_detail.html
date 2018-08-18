@@ -115,7 +115,7 @@ function makeEl(config) {
       }
     }
   }
-
+  target.style="color:white"
   return target;
 }
 
@@ -144,7 +144,7 @@ function init(options) {
   }
 }
 
-init();
+init({enableIf: true});
 </script>
 {% endblock%}
 {% block content %}
@@ -182,7 +182,8 @@ init();
                                     <strong>collezione:</strong> estate</li>
                             </ul>
                             <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-                            <a data-whatsapp="5215585420898" data-whatsapp-message="Salve, vorrei info riguardo <h1> {{ image.image.title }} </h1>" style="color:white !important;background-color: #34AF23"class="button button-3d button-rounded">WhatsAppami</a>
+                            <br>
+                            <button data-whatsapp="5215585420898" data-whatsapp-message="Salve, vorrei info riguardo {{ image.image.title }}" style="color:white!important;background-color: #34AF23"class="btn btn-prymary">WhatsAppami</button>
                         </div>
                     </article>
                 </div>
