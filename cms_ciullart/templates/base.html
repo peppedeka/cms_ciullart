@@ -49,9 +49,20 @@
                         <!-- Primary Navigation
                             ============================================= -->
                         <nav id="primary-menu" class="dark">
-                            <ul>
+
+                            <ul class="nav nav-pills">
                                 <li><a href="{% slugurl 'home' %}"><div>Home</div></a></li>
-                                <li class="current"><a href="{% slugurl 'progetti' %}"><div>Sezioni</div></a></li>
+                                <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                                        Sezioni
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="{% slugurl 'magliette' %}">T-shirs d'artista</a>
+                                            <a class="dropdown-item" href="{% slugurl 'grafiche' %}">Digital art</a>
+                                            <a class="dropdown-item" href="{% slugurl 'tele' %}">Opere d'artista</a>
+                                        </ul>
+                                    </li>
+
                                 <li class="mega-menu"><a href="{% slugurl 'contatti' %}">Contatti</a></li>
                                 <li class="mega-menu"><a href="{% slugurl 'curiosita' %}"><div>Curiosita</div></a></li>
                                 {% if user.is_authenticated %}
