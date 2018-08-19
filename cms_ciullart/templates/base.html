@@ -52,7 +52,7 @@
                             <ul>
                                 <li><a href="{% slugurl 'home' %}"><div>Home</div></a></li>
                                 <li class="current"><a href="{% slugurl 'progetti' %}"><div>Sezioni</div></a></li>
-                                <li class="mega-menu"><a href="/faq">Contatti</a></li>
+                                <li class="mega-menu"><a href="{% slugurl 'contatti' %}">Contatti</a></li>
                                 <li class="mega-menu"><a href="/avviso-finanziamento"><div>Curiosita</div></a></li>
                                 {% if user.is_authenticated %}
                                     <li><a href="/admin/logout/">Logout {{ user }}</a></li>

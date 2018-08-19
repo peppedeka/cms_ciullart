@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'home',
     'search',
     'section',
+    'single',
+
     'compressor',
 
     'wagtail.contrib.forms',
