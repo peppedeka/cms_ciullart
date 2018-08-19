@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load wagtailcore_tags wagtailimages_tags %} {% block body_class %}template-sectionindexpage
+{% extends "base.html" %} {% load static wagtailcore_tags wagtailimages_tags compress %} {% block body_class %}template-sectionindexpage
 {%endblock%} {% block extra_js %}
 <script type="text/javascript">
 (function(d, s, id) {
@@ -37,7 +37,13 @@
 
     });
 </script>
-{% endblock %} {% block content %}
+{% endblock %}
+{% block extra_css %}
+{% compress css %}
+<link href="{% static 'sass/section_index_page.scss' %}" rel="stylesheet" type="text/x-scss">
+{% endcompress %}
+{% endblock %}
+{% block content %}
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -66,7 +72,7 @@
                     <div class="col-8">
                         <div class="col_full masonry-thumbs grid-6 bottommargin-lg clearfix" data-big="5" data-lightbox="gallery">
                             {% for item in post.gallery_images.all %} {% image item.image original as photo %}
-                            <a class="with-caption" href="{{ photo.url }}" data-lightbox="gallery-item" title="<a>{{ item.caption }}</a><br><a href='../detail/{{item.image.filename}}'> dettagli </a>">
+                            <a class="with-caption" href="{{ photo.url }}" data-lightbox="gallery-item" title="<a>{{ item.caption }}</a><br><a href='../detail/{{item.image.filename}}' class='button button-3d button-rounded button-red'> dettagli </a>">
                                 {% image item.image fill-200x200 as thumb %}
                                 <img class="image_fade" src="{{ thumb.url }}">
                             </a>
