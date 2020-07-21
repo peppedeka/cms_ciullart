@@ -61,7 +61,7 @@ six==1.11.0
 typed-ast==1.1.0
 Unidecode==0.4.21
 urllib3==1.22
-wagtail==2.1.1
+wagtail==2.7.4
 wagtail-app-pages==0.2.3
 wagtail-metadata==2.0.0
 wagtail-metadata-mixin==0.0.4
